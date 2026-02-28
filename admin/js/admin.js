@@ -70,7 +70,7 @@
           body: JSON.stringify(payload)
         });
 
-        showFeedback(feedbackNode, 'Connexion reussie, redirection...', 'success');
+        showFeedback(feedbackNode, 'Connexion réussie, redirection...', 'success');
         window.location.href = '/admin/dashboard';
       } catch (err) {
         showFeedback(feedbackNode, err.message, 'error');
@@ -157,7 +157,7 @@
     const chartWidth = width - padding.left - padding.right;
     const chartHeight = height - padding.top - padding.bottom;
 
-    ctx.fillStyle = '#101a2b';
+    ctx.fillStyle = '#181008';
     ctx.fillRect(padding.left, padding.top, chartWidth, chartHeight);
 
     const maxValue = Math.max(1, ...points.map((point) => point.visits));
@@ -165,7 +165,7 @@
     const slotWidth = chartWidth / Math.max(barCount, 1);
     const barWidth = Math.min(42, slotWidth * 0.65);
 
-    ctx.strokeStyle = '#3b4e6c';
+    ctx.strokeStyle = '#6a4a2c';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(padding.left, padding.top + chartHeight);
@@ -181,15 +181,15 @@
       const y = padding.top + chartHeight - barHeight;
 
       const gradient = ctx.createLinearGradient(0, y, 0, y + barHeight);
-      gradient.addColorStop(0, '#4f6c8f');
-      gradient.addColorStop(1, '#354e6d');
+      gradient.addColorStop(0, '#ff7a18');
+      gradient.addColorStop(1, '#ffd166');
       ctx.fillStyle = gradient;
       ctx.fillRect(x, y, barWidth, barHeight);
 
-      ctx.fillStyle = '#c7d3e5';
+      ctx.fillStyle = '#fde7c5';
       ctx.textAlign = 'center';
       ctx.fillText(String(point.visits), x + barWidth / 2, y - 6);
-      ctx.fillStyle = '#95a5be';
+      ctx.fillStyle = '#d5b68e';
       ctx.fillText(point.label, x + barWidth / 2, padding.top + chartHeight + 16);
     });
   }
@@ -217,7 +217,7 @@
       const tr = document.createElement('tr');
       const td = document.createElement('td');
       td.colSpan = 2;
-      td.textContent = 'Aucune donnee de visite pour le moment.';
+      td.textContent = 'Aucune donnée de visite pour le moment.';
       tr.appendChild(td);
       tableBody.appendChild(tr);
       return;
@@ -243,7 +243,7 @@
       populateStats(stats);
 
       if (feedbackNode) {
-        showFeedback(feedbackNode, 'Statistiques actualisees.', 'success');
+        showFeedback(feedbackNode, 'Statistiques actualisées.', 'success');
       }
     } catch (err) {
       if (err.status === 401) {
@@ -283,7 +283,7 @@
 
       const fileInput = document.getElementById('menu-image');
       if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
-        showFeedback(feedbackNode, 'Selectionnez une image.', 'error');
+        showFeedback(feedbackNode, 'Sélectionnez une image.', 'error');
         return;
       }
 
@@ -300,7 +300,7 @@
           preview.src = result.menuImage;
         }
 
-        showFeedback(feedbackNode, result.message || 'Image mise a jour.', 'success');
+        showFeedback(feedbackNode, result.message || 'Image mise à jour.', 'success');
         form.reset();
       } catch (err) {
         showFeedback(feedbackNode, err.message, 'error');
@@ -343,7 +343,7 @@
           body: JSON.stringify(payload)
         });
 
-        showFeedback(feedbackNode, result.message || 'Informations sauvegardees.', 'success');
+        showFeedback(feedbackNode, result.message || 'Informations sauvegardées.', 'success');
       } catch (err) {
         showFeedback(feedbackNode, err.message, 'error');
       }

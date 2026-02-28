@@ -211,7 +211,7 @@
 
       fillHoursTable(info.hours);
     } catch (err) {
-      console.warn('Info API indisponible, affichage local conserve.');
+      console.warn('Info API indisponible, affichage local conservé.');
     }
   }
 
@@ -231,7 +231,7 @@
         }
       }
     } catch (err) {
-      console.warn('Menu API indisponible, image locale conservee.');
+      console.warn('Menu API indisponible, image locale conservée.');
     }
   }
 
@@ -250,16 +250,16 @@
       event.preventDefault();
 
       if (!reservationForm.checkValidity()) {
-        reservationMessage.textContent = 'Complete tous les champs pour continuer.';
+        reservationMessage.textContent = 'Complétez tous les champs pour continuer.';
         reservationMessage.classList.add('show');
         return;
       }
 
       const formData = new FormData(reservationForm);
       const payload = Object.fromEntries(formData.entries());
-      console.log('Reservation simulee', payload);
+      console.log('Réservation simulée', payload);
 
-      reservationMessage.textContent = 'Top, demande recue. On vous confirme tres vite par email.';
+      reservationMessage.textContent = 'Top, demande reçue. On vous confirme très vite par email.';
       reservationMessage.classList.add('show');
       reservationForm.reset();
     });
