@@ -1,0 +1,92 @@
+﻿<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TONRESTAURANT | Accueil</title>
+  <meta name="description" content="TONRESTAURANT - fast-food moderne, rapide et efficace.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html">TONRESTAURANT</a>
+      <button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="menu.html">Carte</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="infos.html">Infos</a>
+        <a href="reservation.html">R&eacute;server</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="background-image: url('assets/images/hero.jpg');">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <p class="eyebrow">FAST-FOOD MODERNE</p>
+        <h1>Rapide. Bon. Efficace.</h1>
+        <p>Burgers, tacos, pizzas et boissons fraiches, servis sans attente inutile.</p>
+        <a class="btn btn-primary" href="menu.html">Voir la carte</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container presentation-grid">
+        <div>
+          <h2>Le spot fast-food du quartier</h2>
+          <p>Ici, tout va vite et reste gourmand: recettes genereuses, service fluide et ambiance urbaine pour manger sur place ou a emporter.</p>
+          <a class="btn btn-secondary" href="infos.html">Infos pratiques</a>
+        </div>
+        <div class="image-card">
+          <img src="assets/images/presentation.jpg" alt="Burger et frites en gros plan" class="zoomable">
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Street food vibes</h2>
+          <a href="galerie.html" class="text-link">Voir toute la galerie</a>
+        </div>
+        <div class="image-grid">
+          <article class="image-card"><img src="assets/images/gallery-1.jpg" alt="Pizza fondante" class="zoomable"></article>
+          <article class="image-card"><img src="assets/images/gallery-2.jpg" alt="Burger croustillant" class="zoomable"></article>
+          <article class="image-card"><img src="assets/images/gallery-3.jpg" alt="Burger et frites" class="zoomable"></article>
+          <article class="image-card"><img src="assets/images/gallery-4.jpg" alt="Burger street food" class="zoomable"></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-section">
+      <div class="container cta-box">
+        <h2>Faim maintenant ?</h2>
+        <p>Commandez vite ou reservez votre table en quelques secondes.</p>
+        <a class="btn btn-primary" href="reservation.html">Commander / R&eacute;server</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>TONRESTAURANT</p>
+      <p><a href="tel:+33144001122">01 44 00 11 22</a> - <a href="mailto:contact@tonrestaurant.fr">contact@tonrestaurant.fr</a></p>
+      <p>&copy; <span id="current-year"></span> TONRESTAURANT</p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Fermer l'image">&times;</button>
+    <img src="" alt="Agrandissement">
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
+

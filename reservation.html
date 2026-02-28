@@ -1,0 +1,75 @@
+﻿<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TONRESTAURANT | Reservation</title>
+  <meta name="description" content="Commandez ou reservez votre table en quelques secondes chez TONRESTAURANT.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html">TONRESTAURANT</a>
+      <button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="menu.html">Carte</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="infos.html">Infos</a>
+        <a href="reservation.html">R&eacute;server</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <section class="section">
+      <div class="container narrow">
+        <h1>Commander ou reserver une table</h1>
+        <p class="lead">Pour emporter, appelez-nous. Pour sur place, reservez ici en 30 secondes.</p>
+
+        <div class="card form-card">
+          <form id="reservation-form" novalidate>
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input id="nom" name="nom" type="text" autocomplete="name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="personnes">Nombre de personnes</label>
+              <input id="personnes" name="personnes" type="number" min="1" max="20" required>
+            </div>
+
+            <div class="form-group">
+              <label for="date-heure">Date / heure</label>
+              <input id="date-heure" name="dateHeure" type="datetime-local" required>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Reserver maintenant</button>
+            <p id="reservation-message" class="success-message" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>TONRESTAURANT</p>
+      <p><a href="tel:+33144001122">01 44 00 11 22</a> - <a href="mailto:contact@tonrestaurant.fr">contact@tonrestaurant.fr</a></p>
+      <p>&copy; <span id="current-year"></span> TONRESTAURANT</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,165 @@
+﻿<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin | TONRESTAURANT</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/admin/css/admin.css">
+</head>
+<body class="admin-dashboard-page">
+  <div class="admin-layout" id="admin-dashboard">
+    <aside class="admin-sidebar">
+      <div>
+        <p class="brand-overline">Panel Admin</p>
+        <h1>TONRESTAURANT</h1>
+      </div>
+
+      <nav class="admin-nav" aria-label="Sections dashboard">
+        <button type="button" data-target="section-menu" class="active">Carte</button>
+        <button type="button" data-target="section-gallery">Galerie</button>
+        <button type="button" data-target="section-info">Infos etablissement</button>
+        <button type="button" data-target="section-stats">Statistiques</button>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div>
+          <p class="brand-overline">Compte connecte</p>
+          <strong id="admin-user-email">-</strong>
+        </div>
+        <button type="button" id="logout-btn" class="admin-btn danger">Deconnexion</button>
+      </header>
+
+      <section class="admin-panel" id="section-menu">
+        <div class="panel-head">
+          <h2>Image de la carte</h2>
+          <p>Remplacez l'image unique visible sur la page Carte.</p>
+        </div>
+
+        <div class="menu-admin-grid">
+          <figure class="preview-card">
+            <img id="menu-preview" src="/assets/images/menu.jpg" alt="Preview carte">
+          </figure>
+
+          <form id="menu-upload-form" class="stack" enctype="multipart/form-data" novalidate>
+            <label for="menu-image">Nouvelle image menu</label>
+            <input id="menu-image" name="menuImage" type="file" accept="image/*" required>
+            <button type="submit" class="admin-btn primary">Uploader et remplacer</button>
+            <p id="menu-upload-feedback" class="feedback" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="admin-panel" id="section-gallery">
+        <div class="panel-head">
+          <h2>Galerie</h2>
+          <p>Apercu des visuels fast-food utilises sur le site.</p>
+        </div>
+
+        <div class="gallery-preview-grid">
+          <img src="/assets/images/gallery-1.jpg" alt="Galerie 1">
+          <img src="/assets/images/gallery-2.jpg" alt="Galerie 2">
+          <img src="/assets/images/gallery-3.jpg" alt="Galerie 3">
+          <img src="/assets/images/gallery-4.jpg" alt="Galerie 4">
+        </div>
+      </section>
+
+      <section class="admin-panel" id="section-info">
+        <div class="panel-head">
+          <h2>Infos etablissement</h2>
+          <p>Coordonnees publiques et horaires affiches sur le site.</p>
+        </div>
+
+        <form id="info-form" class="stack" novalidate>
+          <div class="grid-two">
+            <div>
+              <label for="info-name">Nom</label>
+              <input id="info-name" name="name" type="text" required>
+            </div>
+            <div>
+              <label for="info-email">Email</label>
+              <input id="info-email" name="email" type="email" required>
+            </div>
+          </div>
+
+          <div class="grid-two">
+            <div>
+              <label for="info-phone">Telephone</label>
+              <input id="info-phone" name="phone" type="text" required>
+            </div>
+            <div>
+              <label for="info-address">Adresse</label>
+              <input id="info-address" name="address" type="text" required>
+            </div>
+          </div>
+
+          <h3>Horaires</h3>
+          <div class="hours-grid">
+            <div><label for="hours-lundi">Lundi</label><input id="hours-lundi" type="text" required></div>
+            <div><label for="hours-mardi">Mardi</label><input id="hours-mardi" type="text" required></div>
+            <div><label for="hours-mercredi">Mercredi</label><input id="hours-mercredi" type="text" required></div>
+            <div><label for="hours-jeudi">Jeudi</label><input id="hours-jeudi" type="text" required></div>
+            <div><label for="hours-vendredi">Vendredi</label><input id="hours-vendredi" type="text" required></div>
+            <div><label for="hours-samedi">Samedi</label><input id="hours-samedi" type="text" required></div>
+            <div><label for="hours-dimanche">Dimanche</label><input id="hours-dimanche" type="text" required></div>
+          </div>
+
+          <button type="submit" class="admin-btn primary">Sauvegarder les infos</button>
+          <p id="info-feedback" class="feedback" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="admin-panel" id="section-stats">
+        <div class="panel-head">
+          <h2>Statistiques</h2>
+          <p>Suivi des visites du site vitrine.</p>
+        </div>
+
+        <div class="stats-cards">
+          <article class="stat-card">
+            <span>Total visites</span>
+            <strong id="stat-total-visits">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Visites aujourd'hui</span>
+            <strong id="stat-today-visits">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Pages vues</span>
+            <strong id="stat-page-views">0</strong>
+          </article>
+        </div>
+
+        <div class="chart-wrap">
+          <canvas id="visits-chart" width="900" height="280" aria-label="Visites 7 derniers jours"></canvas>
+        </div>
+
+        <div class="table-head">
+          <h3>Pages les plus vues</h3>
+          <button id="stats-refresh-btn" type="button" class="admin-btn secondary">Actualiser</button>
+        </div>
+        <p id="stats-feedback" class="feedback" aria-live="polite"></p>
+
+        <div class="table-wrap">
+          <table class="stats-table">
+            <thead>
+              <tr>
+                <th>Page</th>
+                <th>Vues</th>
+              </tr>
+            </thead>
+            <tbody id="page-views-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/admin/js/admin.js"></script>
+</body>
+</html>

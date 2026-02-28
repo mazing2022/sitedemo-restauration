@@ -1,0 +1,61 @@
+﻿<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TONRESTAURANT | Galerie</title>
+  <meta name="description" content="Galerie fast-food TONRESTAURANT: burgers, pizzas, street food et boissons.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html">TONRESTAURANT</a>
+      <button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="menu.html">Carte</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="infos.html">Infos</a>
+        <a href="reservation.html">R&eacute;server</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <section class="section">
+      <div class="container">
+        <h1>Galerie</h1>
+        <p class="lead">Burgers, pizza, street food et ambiance urbaine en images.</p>
+        <div class="image-grid gallery-grid">
+          <article class="image-card"><img src="assets/images/gallery-1.jpg" alt="Pizza croustillante" class="zoomable"></article>
+          <article class="image-card"><img src="assets/images/gallery-2.jpg" alt="Burger crispy" class="zoomable"></article>
+          <article class="image-card"><img src="assets/images/gallery-3.jpg" alt="Burger avec frites" class="zoomable"></article>
+          <article class="image-card"><img src="assets/images/gallery-4.jpg" alt="Burger double steak" class="zoomable"></article>
+          <article class="image-card"><img src="assets/images/gallery-5.jpg" alt="Street burger colore" class="zoomable"></article>
+          <article class="image-card"><img src="assets/images/gallery-6.jpg" alt="Burger gourmet street food" class="zoomable"></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>TONRESTAURANT</p>
+      <p><a href="tel:+33144001122">01 44 00 11 22</a> - <a href="mailto:contact@tonrestaurant.fr">contact@tonrestaurant.fr</a></p>
+      <p>&copy; <span id="current-year"></span> TONRESTAURANT</p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Fermer l'image">&times;</button>
+    <img src="" alt="Agrandissement">
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
+
