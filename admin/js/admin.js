@@ -1,11 +1,226 @@
 (function () {
   const DAY_KEYS = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
-
   const loginForm = document.getElementById('admin-login-form');
   const dashboardRoot = document.getElementById('admin-dashboard');
+  const isStaticPreview = window.location.hostname.endsWith('github.io');
+  const pathParts = window.location.pathname.split('/').filter(Boolean);
+  const repoBase = isStaticPreview && pathParts.length > 0 ? `/${pathParts[0]}` : '';
+  const demoEmail = 'admin@tonrestaurant.fr';
+  const demoPassword = 'Admin@12345';
+  const sessionKey = 'tonrestaurant_admin_demo_session';
+  const infoKey = 'tonrestaurant_admin_demo_info';
+  const menuKey = 'tonrestaurant_admin_demo_menu';
   let lastStats = null;
 
+  function withBase(path) {
+    return `${repoBase}${path}`;
+  }
+
+  function adminLoginUrl() {
+    return withBase('/admin/index.html');
+  }
+
+  function adminDashboardUrl() {
+    return withBase('/admin/dashboard.html');
+  }
+
+  function defaultHours() {
+    return {
+      lundi: '11h30 - 14h30 / 18h30 - 22h30',
+      mardi: '11h30 - 14h30 / 18h30 - 22h30',
+      mercredi: '11h30 - 14h30 / 18h30 - 22h30',
+      jeudi: '11h30 - 14h30 / 18h30 - 23h00',
+      vendredi: '11h30 - 14h30 / 18h30 - 23h30',
+      samedi: '12h00 - 15h00 / 19h00 - 23h30',
+      dimanche: '12h00 - 15h00 / 19h00 - 22h00'
+    };
+  }
+
+  function defaultInfo() {
+    return {
+      name: 'TONRESTAURANT',
+      address: '12 Rue de Paradis, 75010 Paris',
+      phone: '01 44 00 11 22',
+      email: 'contact@tonrestaurant.fr',
+      hours: defaultHours()
+    };
+  }
+
+  function readStoredInfo() {
+    try {
+      const raw = window.localStorage.getItem(infoKey);
+      if (!raw) return defaultInfo();
+      const parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== 'object') return defaultInfo();
+      return Object.assign(defaultInfo(), parsed, { hours: Object.assign(defaultHours(), parsed.hours || {}) });
+    } catch (err) {
+      return defaultInfo();
+    }
+  }
+
+  function writeStoredInfo(info) {
+    window.localStorage.setItem(infoKey, JSON.stringify(info));
+  }
+
+  function readStoredMenuImage() {
+    return window.localStorage.getItem(menuKey) || withBase('/assets/images/menu.jpg');
+  }
+
+  function writeStoredMenuImage(value) {
+    window.localStorage.setItem(menuKey, value);
+  }
+
+  function isDemoLoggedIn() {
+    return window.localStorage.getItem(sessionKey) === demoEmail;
+  }
+
+  function setDemoSession(email) {
+    window.localStorage.setItem(sessionKey, email);
+  }
+
+  function clearDemoSession() {
+    window.localStorage.removeItem(sessionKey);
+  }
+
+  function demoStats() {
+    return {
+      totalVisits: 1284,
+      todayVisits: 74,
+      totalPageViews: 3592,
+      visitsByDay: [
+        { label: 'Lun', visits: 142 },
+        { label: 'Mar', visits: 156 },
+        { label: 'Mer', visits: 161 },
+        { label: 'Jeu', visits: 188 },
+        { label: 'Ven', visits: 235 },
+        { label: 'Sam', visits: 264 },
+        { label: 'Dim', visits: 138 }
+      ],
+      pageViews: [
+        { path: '/', views: 1540 },
+        { path: '/menu.html', views: 1014 },
+        { path: '/galerie.html', views: 626 },
+        { path: '/reservation.html', views: 412 }
+      ]
+    };
+  }
+
+  function parseJsonBody(body) {
+    if (typeof body !== 'string') return {};
+    try {
+      return JSON.parse(body);
+    } catch (err) {
+      return {};
+    }
+  }
+
+  function createApiError(message, status) {
+    const error = new Error(message);
+    error.status = status;
+    return error;
+  }
+
+  function readFileAsDataUrl(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result || ''));
+      reader.onerror = () => reject(createApiError('Impossible de lire le fichier.', 400));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function staticApiRequest(url, options) {
+    const config = options || {};
+    const method = String(config.method || 'GET').toUpperCase();
+
+    if (url === '/api/admin/login' && method === 'POST') {
+      const payload = parseJsonBody(config.body);
+      const email = String(payload.email || '').trim().toLowerCase();
+      const password = String(payload.password || '');
+      if (email === demoEmail && password === demoPassword) {
+        setDemoSession(email);
+        return { message: 'Connexion réussie.', email };
+      }
+      throw createApiError('Identifiants invalides.', 401);
+    }
+
+    if (url === '/api/admin/logout' && method === 'POST') {
+      clearDemoSession();
+      return { message: 'Déconnecté.' };
+    }
+
+    if (url === '/api/admin/session' && method === 'GET') {
+      if (!isDemoLoggedIn()) {
+        throw createApiError('Session expirée.', 401);
+      }
+      return { email: demoEmail };
+    }
+
+    if (url === '/api/menu' && method === 'GET') {
+      return { menuImage: readStoredMenuImage() };
+    }
+
+    if (url === '/api/info' && method === 'GET') {
+      return readStoredInfo();
+    }
+
+    if (url === '/api/admin/menu/upload' && method === 'POST') {
+      if (!isDemoLoggedIn()) {
+        throw createApiError('Session expirée.', 401);
+      }
+
+      const formData = config.body;
+      if (!(formData instanceof FormData)) {
+        throw createApiError('Fichier manquant.', 400);
+      }
+
+      const file = formData.get('menuImage');
+      if (!file || typeof file === 'string') {
+        throw createApiError('Sélectionnez une image.', 400);
+      }
+
+      const dataUrl = await readFileAsDataUrl(file);
+      writeStoredMenuImage(dataUrl);
+      return { message: 'Image mise à jour.', menuImage: dataUrl };
+    }
+
+    if (url === '/api/admin/info' && method === 'POST') {
+      if (!isDemoLoggedIn()) {
+        throw createApiError('Session expirée.', 401);
+      }
+
+      const payload = parseJsonBody(config.body);
+      const info = {
+        name: String(payload.name || '').trim(),
+        address: String(payload.address || '').trim(),
+        phone: String(payload.phone || '').trim(),
+        email: String(payload.email || '').trim(),
+        hours: Object.assign(defaultHours(), payload.hours || {})
+      };
+
+      if (!info.name || !info.address || !info.phone || !info.email) {
+        throw createApiError('Tous les champs sont requis.', 400);
+      }
+
+      writeStoredInfo(info);
+      return { message: 'Informations sauvegardées.' };
+    }
+
+    if (url === '/api/admin/stats' && method === 'GET') {
+      if (!isDemoLoggedIn()) {
+        throw createApiError('Session expirée.', 401);
+      }
+      return demoStats();
+    }
+
+    throw createApiError('Route indisponible en mode preview statique.', 404);
+  }
+
   async function apiRequest(url, options) {
+    if (isStaticPreview) {
+      return staticApiRequest(url, options);
+    }
+
     const config = options || {};
     const headers = Object.assign({}, config.headers || {});
 
@@ -13,7 +228,7 @@
       headers['Content-Type'] = 'application/json';
     }
 
-    const response = await fetch(url, {
+    const response = await fetch(withBase(url), {
       method: config.method || 'GET',
       credentials: 'same-origin',
       headers,
@@ -71,7 +286,7 @@
         });
 
         showFeedback(feedbackNode, 'Connexion réussie, redirection...', 'success');
-        window.location.href = '/admin/dashboard';
+        window.location.href = adminDashboardUrl();
       } catch (err) {
         showFeedback(feedbackNode, err.message, 'error');
       }
@@ -247,7 +462,7 @@
       }
     } catch (err) {
       if (err.status === 401) {
-        window.location.href = '/admin';
+        window.location.href = adminLoginUrl();
         return;
       }
 
@@ -265,7 +480,7 @@
         emailNode.textContent = data.email || '-';
       }
     } catch (err) {
-      window.location.href = '/admin';
+      window.location.href = adminLoginUrl();
       throw err;
     }
   }
@@ -360,7 +575,7 @@
       } catch (err) {
         console.error(err);
       } finally {
-        window.location.href = '/admin';
+        window.location.href = adminLoginUrl();
       }
     });
   }
