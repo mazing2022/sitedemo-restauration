@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TONRESTAURANT | Réservation</title>
-  <meta name="description" content="Commandez ou réservez votre table en quelques secondes chez TONRESTAURANT.">
+  <title>TONRESTAURANT | Commande en ligne</title>
+  <meta name="description" content="Commandez rapidement chez TONRESTAURANT via téléphone, Uber Eats, Deliveroo ou en Click and Collect.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
         <a href="menu.html">Carte</a>
         <a href="galerie.html">Galerie</a>
         <a href="infos.html">Infos</a>
-        <a href="reservation.html">Réserver</a>
+        <a href="reservation.html">Commander</a>
       </nav>
     </div>
   </header>
@@ -28,34 +28,56 @@
   <main class="page-main">
     <section class="section">
       <div class="container narrow">
-        <h1>Commander ou réserver une table</h1>
-        <p class="lead">Pour emporter, appelez-nous. Sur place, réservez ici en 30 secondes.</p>
+        <h1>Commander en ligne</h1>
+        <p class="lead">Choisissez votre canal de commande en moins d'une minute.</p>
 
-        <div class="card form-card">
-          <form id="reservation-form" novalidate>
-            <div class="form-group">
-              <label for="nom">Nom</label>
-              <input id="nom" name="nom" type="text" autocomplete="name" required>
-            </div>
+        <div class="card order-card">
+          <div class="order-header">
+            <p class="order-eyebrow">Commande rapide</p>
+            <h2>4 options simples pour commander</h2>
+            <p class="order-intro">Le téléphone reste l'option la plus directe. Les plateformes sont disponibles en livraison, et le Click and Collect pour un retrait express sur place.</p>
+          </div>
 
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" autocomplete="email" required>
-            </div>
+          <div class="order-actions">
+            <article class="order-action order-action-primary">
+              <p class="order-badge">Action principale</p>
+              <span class="order-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img">
+                  <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.2 19.2 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .8 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.7 2.9.8A2 2 0 0 1 22 16.9z"></path>
+                </svg>
+              </span>
+              <h3>Appeler le restaurant</h3>
+              <p>Passez votre commande directement par téléphone avec notre équipe.</p>
+              <a class="order-btn order-btn-primary" href="tel:+33144001122">Appeler maintenant</a>
+            </article>
 
-            <div class="form-group">
-              <label for="personnes">Nombre de personnes</label>
-              <input id="personnes" name="personnes" type="number" min="1" max="20" required>
-            </div>
+            <article class="order-action">
+              <span class="order-icon order-icon-logo" aria-hidden="true">
+                <img src="assets/images/order-uber-eats.svg" alt="">
+              </span>
+              <h3>Commander sur Uber Eats</h3>
+              <p>Retrouvez notre carte en livraison rapide via Uber Eats.</p>
+              <a class="order-btn order-btn-secondary" href="https://www.ubereats.com/fr" target="_blank" rel="noopener">Ouvrir Uber Eats</a>
+            </article>
 
-            <div class="form-group">
-              <label for="date-heure">Date / heure</label>
-              <input id="date-heure" name="dateHeure" type="datetime-local" required>
-            </div>
+            <article class="order-action">
+              <span class="order-icon order-icon-logo" aria-hidden="true">
+                <img src="assets/images/order-deliveroo.png" alt="">
+              </span>
+              <h3>Commander sur Deliveroo</h3>
+              <p>Commandez facilement vos plats sur Deliveroo.</p>
+              <a class="order-btn order-btn-secondary" href="https://deliveroo.fr/fr/" target="_blank" rel="noopener">Ouvrir Deliveroo</a>
+            </article>
 
-            <button class="btn btn-primary" type="submit">Réserver maintenant</button>
-            <p id="reservation-message" class="success-message" aria-live="polite"></p>
-          </form>
+            <article class="order-action order-action-alt">
+              <span class="order-icon order-icon-logo" aria-hidden="true">
+                <img src="assets/images/order-click-and-collect.jpg" alt="">
+              </span>
+              <h3>Click and Collect</h3>
+              <p>Commandez à l'avance et récupérez votre commande sur place.</p>
+              <a class="order-btn order-btn-ghost" href="menu.html">Préparer ma commande</a>
+            </article>
+          </div>
         </div>
       </div>
     </section>

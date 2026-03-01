@@ -235,36 +235,6 @@
     }
   }
 
-  const reservationForm = document.getElementById('reservation-form');
-  const reservationMessage = document.getElementById('reservation-message');
-  const dateTimeInput = document.getElementById('date-heure');
-
-  if (dateTimeInput) {
-    const now = new Date();
-    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-    dateTimeInput.min = now.toISOString().slice(0, 16);
-  }
-
-  if (reservationForm && reservationMessage) {
-    reservationForm.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      if (!reservationForm.checkValidity()) {
-        reservationMessage.textContent = 'Complétez tous les champs pour continuer.';
-        reservationMessage.classList.add('show');
-        return;
-      }
-
-      const formData = new FormData(reservationForm);
-      const payload = Object.fromEntries(formData.entries());
-      console.log('Réservation simulée', payload);
-
-      reservationMessage.textContent = 'Top, demande reçue. On vous confirme très vite par email.';
-      reservationMessage.classList.add('show');
-      reservationForm.reset();
-    });
-  }
-
   loadPublicMenuImage();
   loadPublicInfo();
 })();

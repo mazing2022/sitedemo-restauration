@@ -183,6 +183,17 @@ img {
   padding: clamp(2rem, 9vw, 4rem) 0;
 }
 
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.35rem;
+}
+
+.hero-actions .btn {
+  width: auto;
+}
+
 .eyebrow {
   display: inline-block;
   margin: 0 0 0.9rem;
@@ -310,6 +321,15 @@ p {
   gap: clamp(0.65rem, 1.8vw, 1rem);
 }
 
+.gallery-grid .image-card {
+  aspect-ratio: 4 / 5;
+}
+
+.gallery-grid .image-card img {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
 .image-card {
   --card-lift: 0px;
   position: relative;
@@ -341,18 +361,6 @@ p {
   object-fit: cover;
   filter: saturate(1.08) contrast(1.08) brightness(0.97);
   transition: transform 0.35s ease, filter 0.35s ease;
-}
-
-.gallery-grid .image-card:nth-child(3n + 1) img {
-  aspect-ratio: 4 / 5;
-}
-
-.gallery-grid .image-card:nth-child(3n + 2) img {
-  aspect-ratio: 1 / 1;
-}
-
-.gallery-grid .image-card:nth-child(3n) img {
-  aspect-ratio: 5 / 4;
 }
 
 .image-card:hover {
@@ -445,6 +453,13 @@ p {
 
 .menu-actions {
   margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.menu-actions .btn {
+  width: auto;
 }
 
 .card {
@@ -521,6 +536,232 @@ p {
   border: 0;
   border-radius: 12px;
 }
+
+.order-card {
+  max-width: 980px;
+  margin-inline: auto;
+  padding: clamp(1rem, 2.8vw, 1.6rem);
+  border: 1px solid rgba(255, 209, 102, 0.3);
+  background:
+    radial-gradient(circle at 88% -20%, rgba(255, 122, 24, 0.2) 0%, rgba(255, 122, 24, 0) 46%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  box-shadow: 0 24px 46px rgba(0, 0, 0, 0.45);
+}
+
+.order-header {
+  margin-bottom: clamp(0.95rem, 2.4vw, 1.35rem);
+}
+
+.order-eyebrow {
+  display: inline-block;
+  margin: 0 0 0.5rem;
+  padding: 0.3rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 209, 102, 0.46);
+  background: rgba(255, 122, 24, 0.14);
+  color: #ffe0b5;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.order-header h2 {
+  margin: 0 0 0.45rem;
+  font-size: clamp(1.45rem, 4.2vw, 2.15rem);
+}
+
+.order-intro {
+  margin: 0;
+  max-width: 68ch;
+  color: #efd8b8;
+}
+
+.order-actions {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.order-action {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.72rem;
+  padding: clamp(0.95rem, 2.2vw, 1.2rem);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 209, 102, 0.2);
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+    rgba(16, 11, 8, 0.92);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);
+  transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.order-action:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 209, 102, 0.42);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.44);
+}
+
+.order-action-primary {
+  border-color: rgba(255, 209, 102, 0.48);
+  background:
+    radial-gradient(circle at 92% 0%, rgba(255, 122, 24, 0.26) 0%, rgba(255, 122, 24, 0) 44%),
+    linear-gradient(150deg, rgba(255, 194, 92, 0.18) 0%, rgba(255, 122, 24, 0.04) 40%, rgba(16, 11, 8, 0.95) 100%);
+}
+
+.order-action-alt {
+  background:
+    radial-gradient(circle at 10% -20%, rgba(255, 95, 87, 0.18) 0%, rgba(255, 95, 87, 0) 44%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+    rgba(16, 11, 8, 0.92);
+}
+
+.order-badge {
+  margin: 0;
+  font-size: 0.73rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffe7c3;
+  font-weight: 700;
+}
+
+.order-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 209, 102, 0.32);
+  background: rgba(255, 122, 24, 0.14);
+  color: #ffe1b3;
+}
+
+.order-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.order-icon-logo {
+  width: 56px;
+  height: 56px;
+  padding: 0.35rem;
+  background: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.order-icon-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+}
+
+.order-action h3 {
+  margin: 0;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 0.04em;
+  font-size: clamp(1.18rem, 3.1vw, 1.6rem);
+  color: #fff2db;
+}
+
+.order-action > p:not(.order-badge) {
+  margin: 0;
+  color: #eed9bc;
+}
+
+.order-btn {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.72rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background-color 0.22s ease, filter 0.22s ease;
+}
+
+.order-btn:hover {
+  transform: translateY(-2px);
+}
+
+.order-btn-primary {
+  color: #221306;
+  background: linear-gradient(130deg, var(--accent), var(--accent-soft));
+  box-shadow: 0 12px 26px rgba(255, 122, 24, 0.36);
+}
+
+.order-btn-primary:hover {
+  box-shadow: var(--glow);
+  filter: brightness(1.03);
+}
+
+.order-btn-secondary {
+  color: #ffe8c6;
+  border-color: rgba(255, 209, 102, 0.46);
+  background: rgba(255, 122, 24, 0.08);
+}
+
+.order-btn-secondary:hover {
+  border-color: var(--accent-soft);
+  background: rgba(255, 122, 24, 0.14);
+}
+
+.order-btn-ghost {
+  color: #ffe7c2;
+  border-color: rgba(255, 209, 102, 0.3);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.order-btn-ghost:hover {
+  border-color: rgba(255, 209, 102, 0.55);
+  background: rgba(255, 122, 24, 0.08);
+}
+
+@media (min-width: 640px) and (max-width: 959px) {
+  .order-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .order-action-primary,
+  .order-action-alt {
+    grid-column: 1 / -1;
+  }
+
+  .order-btn {
+    width: auto;
+  }
+}
+
+@media (min-width: 960px) {
+  .order-actions {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .order-action-primary {
+    grid-column: span 12;
+  }
+
+  .order-actions .order-action:not(.order-action-primary) {
+    grid-column: span 4;
+  }
+
+  .order-btn {
+    width: auto;
+  }
+}
+
 
 .form-card {
   max-width: 640px;
@@ -701,14 +942,6 @@ select:focus {
 
   .gallery-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .gallery-grid .image-card:nth-child(3n + 2) {
-    --card-lift: 10px;
-  }
-
-  .gallery-grid .image-card:nth-child(3n) {
-    --card-lift: 4px;
   }
 }
 
